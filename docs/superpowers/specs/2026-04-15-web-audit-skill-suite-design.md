@@ -21,6 +21,8 @@ Intended for use on own sites and client sites across all industries (SaaS, e-co
 /site-audit <url> --format html                          # HTML report
 /site-audit <url> --format dashboard                     # Live browser dashboard
 /site-audit <url> --pages 30                             # Limit crawl to 30 pages
+/site-audit <url> --depth 2                              # Crawl up to 2 levels deep
+/site-audit <url> --lite                                 # Lightweight audit (free tier)
 /site-audit <url> --format pdf --email client@agency.com # PDF + email on completion
 ```
 
@@ -30,8 +32,48 @@ Intended for use on own sites and client sites across all industries (SaaS, e-co
 |---|---|---|
 | `url` | required | Target site to audit |
 | `--format` | `pdf` | Output format: `pdf`, `html`, `dashboard` |
-| `--pages` | `50` | Max pages to crawl |
+| `--pages` | `50` | Max total pages to crawl |
+| `--depth` | unlimited | Max crawl depth from homepage (e.g. `--depth 2` = homepage + 2 levels) |
 | `--email` | none | Send report to this address via Gmail MCP |
+| `--lite` | off | Lightweight audit mode — reduced crawl, omits premium features (see below) |
+
+### `--lite` Mode
+
+Designed for free-tier or prospective clients — delivers a useful snapshot audit without the full feature set, creating a clear value gap that incentivizes upgrading to a full paid audit.
+
+**What `--lite` includes:**
+- Crawl up to 10 pages (regardless of `--pages`)
+- Technical SEO checks (crawlability, robots.txt, sitemap, HTTPS, title/meta)
+- Performance score via PageSpeed Insights
+- Overall composite score + category scores
+- Executive summary (What's Working / Needs Attention)
+- Top 3 CRITICAL priority actions only
+- HTML or PDF output (no dashboard)
+- Local file delivery only (no GitHub Pages deploy)
+
+**What `--lite` omits:**
+- Playwright screenshots and visual/UX analysis
+- Design & UX category scoring
+- CRO assessment
+- Keyword health analysis (no DataForSEO calls)
+- Backlink data
+- Per-category detail sections in report
+- GitHub Pages publishing and live URL
+- Email delivery (`--email` ignored)
+- Full priority action plan (capped at 3 items)
+
+**Report footer in `--lite` mode** includes a prompt:
+> _"This is a Lite audit (10 pages). A Full audit covers up to 50 pages, visual design scoring, keyword analysis, backlink data, and a live shareable report. [Upgrade to Full Audit →]"_
+
+### `--depth` vs `--pages`
+
+These two parameters work together and are independent constraints — the crawler stops when either limit is hit first:
+
+- `--pages 30` — stop after 30 total pages regardless of depth
+- `--depth 2` — only follow links 2 levels from homepage (homepage = level 0, direct links = level 1, their links = level 2)
+- `--pages 30 --depth 2` — stop at 30 pages OR depth 2, whichever comes first
+
+Default behavior (no depth flag): crawl breadth-first up to `--pages` limit with no depth cap.
 
 ---
 
@@ -99,7 +141,9 @@ web-audit/
 
 ## Crawler
 
-- Starts at provided URL, follows internal links up to `--pages` limit (default 50)
+- Starts at provided URL, follows internal links breadth-first
+- Stops when either `--pages` limit (default 50) or `--depth` limit (default: none) is reached — whichever comes first
+- In `--lite` mode: hard cap of 10 pages regardless of `--pages` or `--depth` values
 - Collects: page HTML, status codes, response times, canonical tags, meta robots
 - Checks: `robots.txt` (allowed/disallowed paths), XML sitemap existence and validity
 - Outputs: structured URL map JSON consumed by SEO and Design agents
@@ -245,6 +289,8 @@ When `--email` is provided:
 | GitHub Pages setup fails | Report saved locally, URL not generated, user notified |
 | Gmail MCP not authenticated | URL printed to terminal, email skipped with instructions |
 | Playwright not installed | Design agent falls back to DOM-only analysis, screenshots skipped |
+| `--lite` + `--email` combined | `--email` silently ignored in lite mode, noted in terminal output |
+| `--lite` + `--format dashboard` | Falls back to `html`, noted in terminal output |
 
 ---
 
