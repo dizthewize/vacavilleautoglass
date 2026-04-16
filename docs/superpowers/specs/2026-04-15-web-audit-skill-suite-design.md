@@ -59,8 +59,9 @@ Designed for free-tier or prospective clients — delivers a useful snapshot aud
 - Backlink data
 - Per-category detail sections in report
 - GitHub Pages publishing and live URL
-- Email delivery (`--email` ignored)
 - Full priority action plan (capped at 3 items)
+
+**Note:** `--email` is fully compatible with `--lite`. The lite report is attached/linked and sent to the provided address — ideal for sending a prospect their snapshot audit with an upgrade prompt embedded in the email body.
 
 **Report footer in `--lite` mode** includes a prompt:
 > _"This is a Lite audit (10 pages). A Full audit covers up to 50 pages, visual design scoring, keyword analysis, backlink data, and a live shareable report. [Upgrade to Full Audit →]"_
@@ -289,7 +290,6 @@ When `--email` is provided:
 | GitHub Pages setup fails | Report saved locally, URL not generated, user notified |
 | Gmail MCP not authenticated | URL printed to terminal, email skipped with instructions |
 | Playwright not installed | Design agent falls back to DOM-only analysis, screenshots skipped |
-| `--lite` + `--email` combined | `--email` silently ignored in lite mode, noted in terminal output |
 | `--lite` + `--format dashboard` | Falls back to `html`, noted in terminal output |
 
 ---
