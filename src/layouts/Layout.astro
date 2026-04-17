@@ -18,7 +18,9 @@ const {
   title,
   description,
   canonical,
-  ogImage = '/og-image.png',
+  // Fallback to favicon.svg until a real 1200×630 og-image.png is produced by the image phase.
+  // Prevents broken social-share previews from a missing /og-image.png on launch.
+  ogImage = '/favicon.svg',
   ogType = 'website',
   jsonLd,
   noindex = false,
@@ -26,6 +28,8 @@ const {
 
 const siteUrl = 'https://vacavilleautoglass.com';
 const pageUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+// Default OG image is the site favicon until a real 1200×630 og-image.png is generated.
+// See docs/design-system.md Image Brief row "og-image" (run /site-builder start-at=images to produce).
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 <!DOCTYPE html>
@@ -44,6 +48,15 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
+    />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />

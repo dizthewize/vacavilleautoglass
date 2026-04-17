@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
+/* Google Fonts (Archivo + Manrope) are loaded via <link rel="preload"/"stylesheet">
+   in src/layouts/Layout.astro for a non-render-blocking, higher-priority fetch. */
 
 @tailwind base;
 @tailwind components;
@@ -184,7 +185,7 @@
 .hero-gradient {
   background:
     radial-gradient(circle at 85% 30%, rgba(249, 115, 22, 0.22), transparent 55%),
-    linear-gradient(180deg, #0E3A5F 0%, #0A2B47 100%);
+    linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
 }
 
 /* Inner-page hero bottom accent seam */

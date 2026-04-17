@@ -61,6 +61,7 @@ const {
             <a
               href={ctaSecondary.href}
               class="inline-flex items-center justify-center border-2 border-white/60 text-white hover:bg-white hover:text-primary transition-colors font-display font-bold text-base uppercase tracking-wide rounded-md px-6 py-3"
+              aria-label={ctaSecondary.href.startsWith('tel:') ? 'Call Vacaville Auto Glass' : undefined}
             >
               {ctaSecondary.label}
             </a>

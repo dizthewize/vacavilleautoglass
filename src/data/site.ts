@@ -130,22 +130,25 @@ export const CITIES: CityMeta[] = [
   },
 ];
 
+// NOTE: Testimonial names are placeholders. Replace with real, verifiable customer
+// attributions before launch — using fabricated names on a live service-business
+// site can be misleading under FTC endorsement guidelines.
 export const TESTIMONIALS = [
   {
     quote: 'They came to my office in Fairfield, replaced the windshield in under an hour, and handled my insurance claim without me lifting a finger. Unbeatable.',
-    name: 'Maria R.',
+    name: '[Customer Name]',
     city: 'Fairfield',
     service: 'Windshield Replacement',
   },
   {
     quote: 'Rock chip turned into a crack overnight. They fixed it in my driveway the next morning. Insurance covered everything. Friendly, fast, professional.',
-    name: 'James T.',
+    name: '[Customer Name]',
     city: 'Vacaville',
     service: 'Chip Repair',
   },
   {
     quote: 'My 2023 truck needed ADAS recalibration after the new windshield. They did it right the first time — lane-assist works perfectly. Highly recommend.',
-    name: 'Carlos M.',
+    name: '[Customer Name]',
     city: 'Davis',
     service: 'Windshield + ADAS',
   },
