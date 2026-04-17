@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'ADAS Calibration Vacaville | Windshield Camera Recalibration';
+const description = 'Factory-certified ADAS calibration after windshield replacement. Lane-assist, collision avoidance, cameras recalibrated to OEM specs.';
+
+const paragraphs = [
+  "Modern vehicles use a camera mounted to the windshield for lane departure, collision warning, adaptive cruise control, traffic-sign recognition, and automatic high-beams. Every time that windshield is replaced, the camera's alignment shifts by fractions of a degree — enough to miscalibrate the entire ADAS suite.",
+  "We perform both static (shop target board) and dynamic (road-test) ADAS calibration to OEM specifications. A calibration certificate is provided with every job — required by most insurance policies and dealer warranties.",
+];
+
+const benefits = [
+  'Static + dynamic calibration as required by manufacturer',
+  'All major OEMs supported (Honda, Toyota, Ford, GM, Subaru, Tesla, etc.)',
+  'Calibration certificate provided',
+  'Performed on-site after windshield installation',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'ADAS Calibration',
+    'Factory-certified static and dynamic ADAS recalibration for lane-assist, collision avoidance, and adaptive cruise, performed on-site after windshield replacement.',
+    'adas-calibration'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'ADAS Calibration', path: '/services/adas-calibration' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="ADAS Calibration After Windshield Replacement"
+    subheadline="Factory-certified recalibration for lane-assist, collision warning, and adaptive cruise."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'ADAS Calibration' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Ask About ADAS Calibration"
+    defaultService="ADAS Calibration"
+    intent="adas-calibration"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Need a windshield replacement too? See
+        <a href="/services/windshield-replacement" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">windshield replacement</a>.
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

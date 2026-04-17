@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceAreaBody from '../../components/ServiceAreaBody.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { CITIES } from '../../data/site';
+import { breadcrumbSchema, cityLocalBusinessSchema } from '../../data/schema';
+
+const city = CITIES.find((c) => c.slug === 'dixon')!;
+
+const title = 'Dixon Auto Glass | Windshield Replacement Near You';
+const description = 'Auto glass service in Dixon, CA. Mobile windshield replacement, rock chip repair, side windows. Insurance direct billing. Free quote.';
+
+const jsonLd = [
+  cityLocalBusinessSchema(city.name, city.slug),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Service Areas', path: '/service-areas' },
+    { label: city.name, path: `/service-areas/${city.slug}` },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline={`Auto Glass in ${city.name}, CA — Mobile Service`}
+    subheadline="Windshield replacement, rock chip repair, side windows — we come to you in Dixon."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Service Areas', href: '/service-areas' },
+      { label: city.name },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceAreaBody
+    cityName={city.name}
+    citySlug={city.slug}
+    landmark={city.landmark}
+    neighbors={city.neighbors}
+  />
+
+  <FinalCTA />
+</Layout>

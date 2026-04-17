@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerPageHero from '../components/InnerPageHero.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import { breadcrumbSchema } from '../data/schema';
+
+const title = 'About Vacaville Auto Glass | Licensed & Locally Owned';
+const description = 'Locally owned and operated in Vacaville, CA. Licensed, insured, and ADAS-certified. Lifetime warranty on every installation.';
+
+const jsonLd = breadcrumbSchema([
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+]);
+
+const trust = [
+  'Licensed & Insured in California',
+  'AGSC-certified technicians',
+  'ADAS calibration certified',
+  'Locally owned and operated',
+  'Lifetime installation warranty',
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Locally Owned Auto Glass — Built on Vacaville Trust"
+    subheadline="Family-run, licensed, and serving Solano and Napa Counties."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'About' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl">
+      <p class="font-body text-lg text-text leading-loose mb-6">
+        Vacaville Auto Glass is a locally owned, family-run auto glass shop serving Solano and Napa Counties. We started with one truck, one technician, and a simple principle: treat every windshield like it's going on our own kids' car. That hasn't changed.
+      </p>
+      <p class="font-body text-lg text-text leading-loose">
+        Today, our mobile units cover everything from Vacaville to Napa, from a quick rock-chip repair in a driveway to a full ADAS-camera calibration after a windshield replacement on the latest model-year SUV. What hasn't scaled with us: the time we take to do the job right. OEM-quality glass. Factory-spec urethane. Full cure times. ADAS calibration done to the manufacturer's procedure — not shortcut. Every single install.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-py bg-surface">
+    <div class="container-site">
+      <div class="max-w-2xl mb-8">
+        <p class="eyebrow mb-3">Credentials</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight">
+          What we bring to every job
+        </h2>
+      </div>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0 max-w-3xl">
+        {trust.map((t) => (
+          <li class="flex items-center gap-3 bg-bg border border-border rounded-lg px-5 py-4 text-base font-body font-semibold text-text">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>{t}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/services" class="inline-flex items-center justify-center border-2 border-primary text-primary hover:bg-primary hover:text-text-inverse transition-colors font-display font-bold text-base uppercase tracking-wide rounded-md px-6 py-3">
+          See Our Services
+        </a>
+        <a href="/contact" class="btn-primary inline-flex items-center justify-center bg-accent text-text-inverse font-display font-black text-base uppercase tracking-wide rounded-md px-6 py-3">
+          Get a Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

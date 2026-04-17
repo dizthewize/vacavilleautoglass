@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'Rear Window & Back Glass Replacement | Vacaville Auto Glass';
+const description = 'Rear window replacement for all makes and models in Vacaville. Defroster grid preserved. Mobile service. Lifetime installation warranty.';
+
+const paragraphs = [
+  "Rear windows are deceptively complex — they carry the defroster grid, sometimes a radio antenna, and often a brake-light wiring harness. A proper replacement reconnects every one and tests each before you drive away. We carry OEM-equivalent back glass for virtually every car, truck, and SUV, and perform the installation at your location in about 2 hours.",
+];
+
+const benefits = [
+  'Defroster grid preserved and tested',
+  'Antenna and brake-light reconnection included',
+  'OEM-equivalent glass',
+  'Mobile installation',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'Rear Window Replacement',
+    'Mobile rear window and back glass replacement with defroster grid preserved, antenna reconnected, and lifetime warranty in Vacaville, CA.',
+    'rear-window-replacement'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Rear Window Replacement', path: '/services/rear-window-replacement' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Rear Window & Back Glass Replacement"
+    subheadline="Rear window replacement with defroster grid preserved. Mobile installation."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Rear Window Replacement' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Get a Rear Window Quote"
+    defaultService="Rear Window"
+    intent="rear-window-replacement"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>.
+        Need mobile service? See
+        <a href="/services/mobile-service" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">mobile auto glass</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerPageHero from '../components/InnerPageHero.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import { breadcrumbSchema } from '../data/schema';
+
+const title = 'Contact Vacaville Auto Glass | (916) 612-2126 | Free Quote';
+const description = 'Free mobile auto glass quote in Vacaville. Call (916) 612-2126 or request online. Serving Solano and Napa Counties.';
+
+const jsonLd = breadcrumbSchema([
+  { label: 'Home', path: '/' },
+  { label: 'Contact', path: '/contact' },
+]);
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Contact Vacaville Auto Glass"
+    subheadline="Call us for the fastest quote. Prefer to type? Fill out the form and we'll text you back within an hour."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Contact' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14">
+        <div>
+          <p class="font-body text-lg text-text leading-loose mb-8">
+            The fastest way to get a quote is a 2-minute phone call — we'll diagnose over the phone and give you a firm price on the spot. Prefer a form? Fill this out and we'll text you back within an hour during business hours.
+          </p>
+
+          <dl class="space-y-5">
+            <div>
+              <dt class="font-body font-bold text-xs uppercase tracking-[0.1em] text-text-muted mb-1">Phone</dt>
+              <dd>
+                <a
+                  href="tel:+19166122126"
+                  class="inline-flex items-center gap-2 font-display font-extrabold text-2xl md:text-3xl text-primary hover:text-accent transition-colors"
+                  aria-label="Call Vacaville Auto Glass"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  (916) 612-2126
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt class="font-body font-bold text-xs uppercase tracking-[0.1em] text-text-muted mb-1">Hours</dt>
+              <dd class="font-body text-base text-text">
+                Mon–Sat 8am–6pm<br/>
+                Sun by appointment
+              </dd>
+            </div>
+            <div>
+              <dt class="font-body font-bold text-xs uppercase tracking-[0.1em] text-text-muted mb-1">Service area</dt>
+              <dd class="font-body text-base text-text">
+                Vacaville + 20-mile radius<br/>
+                <a href="/service-areas" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">See all service areas →</a>
+              </dd>
+            </div>
+            <div>
+              <dt class="font-body font-bold text-xs uppercase tracking-[0.1em] text-text-muted mb-1">Insurance</dt>
+              <dd class="font-body text-base text-text">
+                All major carriers — we'll handle the claim.<br/>
+                <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">Insurance details →</a>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="mt-8 p-6 bg-surface border-l-4 border-accent rounded-md">
+            <p class="font-display font-extrabold text-xl text-text mb-1">
+              Mobile service — we come to you.
+            </p>
+            <p class="font-body text-sm text-text-muted">
+              No shop visit required. We bring the glass, the adhesive, and the calibration gear to your driveway, office, or roadside anywhere within 20 miles of Vacaville.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <LeadCaptureForm
+            formId="contact-lead-form"
+            formName="contact-quote"
+            title="Send My Free Quote Request"
+            showNotes={true}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

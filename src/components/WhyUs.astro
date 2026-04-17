@@ -1,0 +1,41 @@
+---
+export interface Props {
+  heading?: string;
+  items?: { title: string; body: string }[];
+  bg?: 'surface' | 'bg';
+}
+
+const {
+  heading = 'Why Vacaville Auto Glass',
+  bg = 'surface',
+  items = [
+    { title: 'OEM-quality glass, every job', body: 'We use OEM or OEM-equivalent glass from reputable manufacturers — never cheap imports that fail to meet safety spec.' },
+    { title: 'ADAS-certified technicians', body: 'Modern windshields carry camera systems for lane-assist and collision avoidance. We recalibrate to factory spec, on-site.' },
+    { title: 'Insurance handled end-to-end', body: 'We bill all major carriers directly. One call starts the claim; one signature closes it. No paperwork shuffle.' },
+    { title: 'Lifetime warranty on every install', body: 'For as long as you own the vehicle: no air leaks, no water leaks, no workmanship defects — or we fix it free.' },
+  ],
+} = Astro.props;
+---
+<section class={`section-py ${bg === 'surface' ? 'bg-surface' : 'bg-bg'}`}>
+  <div class="container-site">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow mb-3">Why Us</p>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight">{heading}</h2>
+    </div>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 list-none p-0">
+      {items.map((item) => (
+        <li class="bg-bg border border-border rounded-lg p-6">
+          <div class="flex items-start gap-3">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0 mt-1" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <div>
+              <h3 class="font-display font-bold text-xl text-text mb-1">{item.title}</h3>
+              <p class="text-base text-text-muted leading-normal">{item.body}</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

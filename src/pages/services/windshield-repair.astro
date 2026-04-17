@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'Windshield Chip & Crack Repair | Vacaville Auto Glass';
+const description = 'Fast rock chip and crack repair in Vacaville. Most repairs under 30 minutes. Insurance often waives the deductible. Mobile service available.';
+
+const paragraphs = [
+  "A rock chip the size of a quarter can turn into a 12-inch crack overnight — a pothole, a hot-and-cold cycle, or a door slam is often enough. Repairing the chip early preserves the original factory seal of your windshield (which is always stronger than a replacement) and typically costs nothing out-of-pocket under California's no-deductible chip repair provisions.",
+  "Our technician injects optical-grade resin into the chip under vacuum, cures it with UV light, and polishes it flush. The repair restores 90–95% of structural integrity and is barely visible. Total time: usually under 30 minutes.",
+];
+
+const benefits = [
+  'Saves your original factory windshield',
+  'Often free with comprehensive insurance',
+  '30 minutes at your location',
+  'Prevents chip from spreading into a full crack',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'Windshield Chip and Crack Repair',
+    'Mobile rock chip and crack repair in Vacaville, CA. Most repairs under 30 minutes with insurance usually waiving the deductible.',
+    'windshield-repair'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Windshield Repair', path: '/services/windshield-repair' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Windshield Chip & Crack Repair in Vacaville"
+    subheadline="Most chips repaired in 30 minutes. Insurance usually waives the deductible."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Windshield Repair' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Book a Free Chip Repair"
+    defaultService="Windshield Chip/Crack Repair"
+    intent="windshield-repair"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Chip too large to repair? See
+        <a href="/services/windshield-replacement" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">windshield replacement</a>.
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

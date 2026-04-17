@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'Side Window Replacement Vacaville | Vacaville Auto Glass';
+const description = 'Door glass and side window replacement in Vacaville, CA. Broken window? We come to you. Insurance direct billing. Call (916) 612-2126.';
+
+const paragraphs = [
+  "Side window breaks happen fast — a break-in, a thrown rock, a stuck regulator. We bring the replacement glass, carefully remove the broken shards from your door cavity (a step cheap shops skip, leading to rattles and seal failures), install OEM-equivalent tempered glass, and verify the window operates smoothly.",
+  "Most side window jobs are completed in 60–90 minutes at your location. Many side windows are covered by comprehensive insurance under the same policy that covers windshields.",
+];
+
+const benefits = [
+  'Full shard cleanup inside the door cavity',
+  'OEM-equivalent tempered glass',
+  'Power window operation verified',
+  'Mobile service — no towing needed',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'Side Window Replacement',
+    'Mobile side window and door glass replacement with full shard cleanup and OEM-equivalent tempered glass in Vacaville, CA.',
+    'side-window-replacement'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Side Window Replacement', path: '/services/side-window-replacement' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Side Window & Door Glass Replacement in Vacaville"
+    subheadline="Broken side window? We clean up, secure, and replace — same day when possible."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Side Window Replacement' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Get a Side Window Quote"
+    defaultService="Side Window"
+    intent="side-window-replacement"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>.
+        Need mobile service? See
+        <a href="/services/mobile-service" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">mobile auto glass</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>
