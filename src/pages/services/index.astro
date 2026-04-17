@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { SERVICES } from '../../data/site';
+import { breadcrumbSchema } from '../../data/schema';
+
+const title = 'Auto Glass Services in Vacaville, CA | Vacaville Auto Glass';
+const description = 'Full-service auto glass: windshield replacement, chip repair, side/rear windows, ADAS calibration, mobile service. Serving Vacaville + 20 miles.';
+
+const jsonLd = breadcrumbSchema([
+  { label: 'Home', path: '/' },
+  { label: 'Services', path: '/services' },
+]);
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Full-Service Auto Glass in Vacaville, CA"
+    subheadline="Windshield repair, replacement, side & rear windows, ADAS calibration — all as mobile service."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl">
+      <p class="font-body text-lg text-text leading-loose">
+        From rock chip repairs to full windshield-and-ADAS replacements, Vacaville Auto Glass handles every auto glass need in-house. All work is backed by a lifetime warranty, performed with OEM-quality glass, and available as mobile service anywhere within 20 miles of Vacaville. Insurance claims? We handle them for you.
+      </p>
+    </div>
+  </section>
+
+  <ServicesGrid
+    services={SERVICES}
+    eyebrow="Pick Your Service"
+    heading="Every Auto Glass Service We Offer"
+    intro="Pick the service that matches your situation. Not sure? Call us — we'll diagnose over the phone in 2 minutes."
+    sectionBg="surface"
+  />
+
+  <FinalCTA />
+</Layout>

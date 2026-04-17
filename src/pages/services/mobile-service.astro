@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'Mobile Auto Glass Service in Vacaville — We Come to You';
+const description = 'Mobile windshield replacement at your home, office, or roadside. Serving Vacaville, Fairfield, Dixon, Davis, Vallejo. Insurance accepted.';
+
+const paragraphs = [
+  "Our mobile unit is a fully-equipped glass shop on wheels. Every tool, every adhesive, every piece of glass we'd use in a shop is in the truck — which means there's no reason to ever tow your car or rearrange your day. Park in your driveway, stay at work, or wait at a coffee shop — we'll text when we arrive and again when it's cured and ready to drive.",
+];
+
+const benefits = [
+  'No trip fee within 20-mile Vacaville radius',
+  'Home, office, parking lot, or roadside',
+  'Same OEM-quality glass as shop jobs',
+  'Same lifetime warranty',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'Mobile Auto Glass Service',
+    'Fully-equipped mobile auto glass service — we come to your home, office, or roadside within 20 miles of Vacaville, CA with no trip fee.',
+    'mobile-service'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Mobile Service', path: '/services/mobile-service' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Mobile Auto Glass Service — We Come to You"
+    subheadline="Home, office, or roadside — same rate, no trip fee, within 20 miles of Vacaville."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Mobile Service' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Request Mobile Service"
+    defaultService="Not Sure — Help Me Diagnose"
+    intent="mobile-service"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Not sure if we service your area? See our
+        <a href="/service-areas" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">service areas</a>.
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

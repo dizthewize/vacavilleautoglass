@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { SERVICES, TESTIMONIALS, HOMEPAGE_FAQS } from '../data/site';
+import { localBusinessSchema, faqSchema, breadcrumbSchema } from '../data/schema';
+
+const jsonLd = [
+  localBusinessSchema(),
+  faqSchema(HOMEPAGE_FAQS),
+  breadcrumbSchema([{ label: 'Home', path: '/' }]),
+];
+
+const title = 'Vacaville Auto Glass | Windshield Repair & Replacement';
+const description = 'Mobile auto glass repair in Vacaville, CA. Same-day windshield replacement, chip repair, and ADAS calibration. All insurance accepted. Call (916) 612-2126.';
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <Hero
+    eyebrow="Mobile Service · Vacaville + 20 Miles"
+    headline="Vacaville's Trusted Mobile Auto Glass — We Come to You"
+    subheadline="Same-day windshield replacement, rock chip repair, and ADAS calibration. All insurance accepted. Lifetime warranty on every install."
+    mobileSubheadline="Mobile service · All insurance accepted"
+    showForm={true}
+    formTitle="Get a Free Quote in 60 Seconds"
+    ctaPrimary={{ label: 'Get a Free Quote', href: '#lead-form' }}
+    ctaSecondary={{ label: 'Call (916) 612-2126', href: 'tel:+19166122126' }}
+    ctaTertiary={{ label: 'Check service area →', href: '/service-areas' }}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="font-body text-lg text-text leading-loose">
+          Cracked windshield? Don't drive on it another mile. Vacaville Auto Glass brings OEM-quality glass and certified technicians straight to your driveway, office, or roadside — anywhere within 20 miles of Vacaville. Most replacements are $0 out-of-pocket with your insurance, and we handle the claim for you. Call now for a free quote.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid
+    services={SERVICES}
+    eyebrow="What We Do"
+    heading="Full-Service Auto Glass"
+    intro="From a tiny rock chip to a full windshield-and-camera replacement, we do it all — and we do it at your location. Choose the service that fits your situation."
+    sectionBg="surface"
+  />
+
+  <TestimonialsSection testimonials={TESTIMONIALS} />
+
+  <FAQAccordion faqs={HOMEPAGE_FAQS} />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="eyebrow mb-3">Service Area</p>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight mb-4">
+        Vacaville + 20 Miles
+      </h2>
+      <p class="font-body text-lg text-text-muted leading-loose">
+        We serve Vacaville and every community within 20 miles — including Fairfield, Dixon, Davis, Winters, Suisun City, Vallejo, Napa, and Woodland. Not sure if we come to your neighborhood?
+        <a href="/service-areas" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent ml-1">Check our service areas →</a>
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA
+    eyebrow="Ready for a Free Quote?"
+    headline="Book Your Mobile Auto Glass Service"
+    subheadline="Call (916) 612-2126 or request one online — we'll come to you."
+  />
+</Layout>

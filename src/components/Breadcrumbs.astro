@@ -1,0 +1,26 @@
+---
+export interface Props {
+  items: { label: string; href?: string }[];
+  variant?: 'light' | 'on-dark';
+}
+const { items, variant = 'light' } = Astro.props;
+const textClass = variant === 'on-dark' ? 'text-white/75' : 'text-text-muted';
+const sepClass = variant === 'on-dark' ? 'text-white/40' : 'text-border-strong';
+const linkClass = variant === 'on-dark' ? 'hover:text-accent' : 'hover:text-primary';
+---
+<nav aria-label="Breadcrumb">
+  <ol class="flex items-center flex-wrap gap-2 text-xs font-body font-semibold uppercase tracking-wider">
+    {items.map((item, i) => (
+      <>
+        <li class={textClass}>
+          {item.href && i < items.length - 1 ? (
+            <a href={item.href} class={linkClass}>{item.label}</a>
+          ) : (
+            <span aria-current={i === items.length - 1 ? 'page' : undefined}>{item.label}</span>
+          )}
+        </li>
+        {i < items.length - 1 && <li class={sepClass} aria-hidden="true">/</li>}
+      </>
+    ))}
+  </ol>
+</nav>

@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import ServiceDetailSection from '../../components/ServiceDetailSection.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { breadcrumbSchema, serviceSchema } from '../../data/schema';
+
+const title = 'Windshield Replacement Vacaville CA | Mobile Same-Day Service';
+const description = 'OEM-quality windshield replacement in Vacaville, CA. Mobile service, lifetime warranty, insurance-approved. Same-day appointments. Free quote.';
+
+const paragraphs = [
+  "A cracked windshield isn't just a cosmetic problem — it's a structural one. Your windshield contributes up to 45% of your vehicle's roof-crush strength in a rollover and is a mounting point for airbag deployment. A proper replacement requires OEM-spec glass, factory-grade urethane adhesive, and strict cure-time compliance. We do all three, every time.",
+  "For most vehicles, we arrive at your location with the glass, prep the pinch-weld, install with certified urethane, and have you back on the road in about 2 hours. Vehicles with forward-facing cameras (most cars since 2018) also need ADAS calibration — we handle that on-site too.",
+];
+
+const benefits = [
+  'OEM or OEM-equivalent glass — never cheap imports',
+  'Mobile service at your home, work, or roadside',
+  'Lifetime warranty on the installation',
+  'Insurance direct billing with all major carriers',
+  'ADAS calibration included when needed',
+];
+
+const jsonLd = [
+  serviceSchema(
+    'Windshield Replacement',
+    'OEM-quality windshield replacement with mobile installation, lifetime warranty, and insurance direct billing in Vacaville, CA and surrounding areas.',
+    'windshield-replacement'
+  ),
+  breadcrumbSchema([
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Windshield Replacement', path: '/services/windshield-replacement' },
+  ]),
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Windshield Replacement in Vacaville, CA"
+    subheadline="OEM-quality glass. Mobile installation. Lifetime warranty. Insurance handled."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Windshield Replacement' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <ServiceDetailSection
+    paragraphs={paragraphs}
+    benefits={benefits}
+    ctaLabel="Get a Free Windshield Quote"
+    defaultService="Windshield Replacement"
+    intent="windshield-replacement"
+  />
+
+  <WhyUs />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl text-center">
+      <p class="text-lg text-text-muted leading-normal">
+        Insurance questions? Read our
+        <a href="/insurance" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">insurance guide</a>
+        — we bill all major carriers directly. Not sure if we serve your area? See our
+        <a href="/service-areas" class="text-primary font-semibold border-b border-primary hover:text-accent hover:border-accent">service areas</a>.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "created_at": "2026-04-16T00:00:00Z",
+  "business_name": "Vacaville Auto Glass",
+  "site_type": "service",
+  "phases": {
+    "discovery": "complete",
+    "planner": "complete",
+    "designer": "complete",
+    "builder": "complete",
+    "reviewer": "complete",
+    "deploy": "skipped"
+  },
+  "deploy_enabled": false,
+  "live_url": null,
+  "last_update": "2026-04-16",
+  "design_proof": {
+    "status": "approved",
+    "revision_count": 1,
+    "last_verdict": "PROCEED",
+    "proof_path": ".web-studio/design-proof.html"
+  },
+  "framework": "astro",
+  "pagesBuilt": 18,
+  "lastCompletedPhase": "b7",
+  "reviewSummary": {
+    "critical": 0,
+    "criticalAutoFixed": 0,
+    "high": 3,
+    "medium": 1,
+    "low": 3,
+    "withdrawn": 2,
+    "overruled": 4,
+    "merged": true,
+    "autoFixedHigh": 3,
+    "autoFixedLow": 1
+  }
+}

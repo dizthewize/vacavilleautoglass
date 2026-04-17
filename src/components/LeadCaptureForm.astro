@@ -1,0 +1,159 @@
+---
+export interface Props {
+  formId?: string;
+  formName?: string;
+  title?: string;
+  intent?: string;
+  defaultService?: string;
+  showNotes?: boolean;
+}
+
+const {
+  formId = 'lead-form',
+  formName = 'quote-request',
+  title = 'Get a Free Quote in 60 Seconds',
+  intent = '',
+  defaultService = '',
+  showNotes = false,
+} = Astro.props;
+---
+<div id={formId} class="bg-bg rounded-lg shadow-lg p-6 md:p-8 border border-border">
+  {title && <h2 class="font-display font-extrabold text-2xl text-text mb-1">{title}</h2>}
+  <p class="text-sm text-text-muted mb-5">We'll text you back within an hour during business hours.</p>
+
+  <form
+    name={formName}
+    method="POST"
+    action="/thank-you"
+    data-netlify="true"
+    netlify-honeypot="website"
+    class="flex flex-col gap-4"
+  >
+    <input type="hidden" name="form-name" value={formName} />
+    {intent && <input type="hidden" name="intent" value={intent} />}
+
+    <div class="hidden" aria-hidden="true">
+      <label>
+        Don't fill this out if you're human:
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <div>
+      <label for={`${formId}-name`} class="block font-body font-semibold text-sm text-text mb-2">
+        Name <span class="text-error">*</span>
+      </label>
+      <input
+        id={`${formId}-name`}
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    <div>
+      <label for={`${formId}-phone`} class="block font-body font-semibold text-sm text-text mb-2">
+        Phone <span class="text-error">*</span>
+      </label>
+      <input
+        id={`${formId}-phone`}
+        type="tel"
+        name="phone"
+        required
+        autocomplete="tel"
+        placeholder="(916) 555-0100"
+        pattern="[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}"
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    <div>
+      <label for={`${formId}-vehicle`} class="block font-body font-semibold text-sm text-text mb-2">
+        Vehicle (Year / Make / Model) <span class="text-error">*</span>
+      </label>
+      <input
+        id={`${formId}-vehicle`}
+        type="text"
+        name="vehicle"
+        required
+        placeholder="2021 Toyota Camry"
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    <div>
+      <label for={`${formId}-service`} class="block font-body font-semibold text-sm text-text mb-2">
+        Service Needed <span class="text-error">*</span>
+      </label>
+      <select
+        id={`${formId}-service`}
+        name="service"
+        required
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      >
+        <option value="" disabled selected={!defaultService}>Select a service…</option>
+        <option value="Windshield Replacement" selected={defaultService === 'Windshield Replacement'}>Windshield Replacement</option>
+        <option value="Windshield Chip/Crack Repair" selected={defaultService === 'Windshield Chip/Crack Repair'}>Windshield Chip/Crack Repair</option>
+        <option value="Side Window" selected={defaultService === 'Side Window'}>Side Window</option>
+        <option value="Rear Window" selected={defaultService === 'Rear Window'}>Rear Window</option>
+        <option value="ADAS Calibration" selected={defaultService === 'ADAS Calibration'}>ADAS Calibration</option>
+        <option value="Not Sure — Help Me Diagnose" selected={defaultService === 'Not Sure — Help Me Diagnose'}>Not Sure — Help Me Diagnose</option>
+      </select>
+    </div>
+
+    <div>
+      <label for={`${formId}-zip`} class="block font-body font-semibold text-sm text-text mb-2">
+        ZIP / City <span class="text-error">*</span>
+      </label>
+      <input
+        id={`${formId}-zip`}
+        type="text"
+        name="zip"
+        required
+        placeholder="95687"
+        autocomplete="postal-code"
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    <div>
+      <label for={`${formId}-email`} class="block font-body font-semibold text-sm text-text mb-2">
+        Email <span class="text-text-muted font-normal">(optional)</span>
+      </label>
+      <input
+        id={`${formId}-email`}
+        type="email"
+        name="email"
+        autocomplete="email"
+        class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+      />
+    </div>
+
+    {showNotes && (
+      <div>
+        <label for={`${formId}-notes`} class="block font-body font-semibold text-sm text-text mb-2">
+          Notes / Damage description <span class="text-text-muted font-normal">(optional)</span>
+        </label>
+        <textarea
+          id={`${formId}-notes`}
+          name="notes"
+          rows="4"
+          class="w-full text-base px-4 py-3 border border-border-strong rounded-md bg-bg focus:border-accent focus:outline-none focus:ring-0"
+        ></textarea>
+      </div>
+    )}
+
+    <button
+      type="submit"
+      class="btn-primary w-full inline-flex items-center justify-center bg-accent text-text-inverse font-display font-black text-lg uppercase tracking-wide rounded-md px-8 py-4 mt-2"
+    >
+      Get My Free Quote
+    </button>
+
+    <p class="text-center text-xs text-text-muted mt-1">
+      Licensed &amp; Insured · Mobile Service · All Insurance Accepted
+    </p>
+  </form>
+</div>

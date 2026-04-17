@@ -1,0 +1,41 @@
+---
+export interface Props {
+  variant?: 'light' | 'on-dark';
+  badges?: string[];
+}
+
+const {
+  variant = 'light',
+  badges = ['Licensed & Insured', 'All Insurance Accepted', 'Lifetime Warranty', 'Same-Day Service'],
+} = Astro.props;
+
+const isOnDark = variant === 'on-dark';
+---
+<section class={isOnDark
+  ? 'py-6 bg-transparent text-text-inverse'
+  : 'py-6 bg-surface border-y border-border text-text'
+}>
+  <div class="container-site">
+    <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 list-none p-0">
+      {badges.map((badge) => (
+        <li class="flex items-center gap-2 font-body font-semibold text-sm uppercase tracking-wide">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-accent shrink-0"
+            aria-hidden="true"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span>{badge}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerPageHero from '../components/InnerPageHero.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import { INSURANCE_CARRIERS } from '../data/site';
+import { breadcrumbSchema } from '../data/schema';
+
+const title = 'Insurance-Approved Auto Glass | Direct Billing | Vacaville';
+const description = 'We handle your auto glass insurance claim end-to-end. Direct billing with all major carriers. Most replacements $0 out-of-pocket.';
+
+const jsonLd = breadcrumbSchema([
+  { label: 'Home', path: '/' },
+  { label: 'Insurance', path: '/insurance' },
+]);
+
+const covered = [
+  { item: 'Windshield chip & crack repair', note: 'usually $0 deductible' },
+  { item: 'Full windshield replacement', note: 'deductible applies (often $100)' },
+  { item: 'Side & rear windows', note: 'deductible applies' },
+  { item: 'ADAS calibration', note: 'fully covered when required' },
+];
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Insurance-Approved Auto Glass — We Handle the Claim"
+    subheadline="Direct billing with every major carrier. Most chip repairs $0 out-of-pocket. One call does it."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Insurance' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl">
+      <p class="font-body text-lg text-text leading-loose">
+        Most auto glass claims in California are covered under comprehensive insurance, and most chip repairs are covered with <strong>no deductible</strong>. The process is simple when we run it: you call us, we call your insurer, we bill them directly, and you sign one form at the end. That's it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-py bg-surface">
+    <div class="container-site">
+      <div class="max-w-2xl mb-8">
+        <p class="eyebrow mb-3">Accepted Carriers</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight">
+          We bill all major insurers directly
+        </h2>
+      </div>
+      <ul class="flex flex-wrap gap-2 list-none p-0">
+        {INSURANCE_CARRIERS.map((carrier) => (
+          <li class="inline-flex items-center px-4 py-2 bg-bg border border-border-strong rounded-full text-sm font-body font-semibold text-text">
+            {carrier}
+          </li>
+        ))}
+        <li class="inline-flex items-center px-4 py-2 bg-primary text-text-inverse rounded-full text-sm font-body font-semibold">
+          + all other major carriers
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-py bg-bg">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14">
+        <div>
+          <p class="eyebrow mb-3">What's Covered</p>
+          <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight mb-6">
+            Typical coverage breakdown
+          </h2>
+          <ul class="space-y-4 list-none p-0">
+            {covered.map((c) => (
+              <li class="flex items-start gap-3 text-base text-text font-body leading-normal">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0 mt-0.5" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span><strong class="font-semibold">{c.item}</strong> — {c.note}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-sm text-text-muted italic">
+            Exact coverage varies by policy. We'll confirm your deductible before any work begins.
+          </p>
+          <div class="mt-6">
+            <a
+              href="tel:+19166122126"
+              class="inline-flex items-center gap-2 font-display font-extrabold text-xl md:text-2xl text-primary hover:text-accent transition-colors"
+              aria-label="Call Vacaville Auto Glass"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              (916) 612-2126
+            </a>
+          </div>
+        </div>
+        <div>
+          <LeadCaptureForm
+            formId="insurance-lead-form"
+            formName="insurance-claim"
+            title="Start My Insurance Claim"
+            intent="insurance-claim"
+            showNotes={true}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

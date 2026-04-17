@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InnerPageHero from '../../components/InnerPageHero.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import { CITIES, SITE } from '../../data/site';
+import { breadcrumbSchema } from '../../data/schema';
+
+const title = 'Service Areas | Auto Glass in Solano & Napa Counties';
+const description = 'Serving Vacaville + 20 miles: Fairfield, Dixon, Davis, Winters, Suisun City, Vallejo, Napa, Woodland. Mobile service to your location.';
+
+const jsonLd = breadcrumbSchema([
+  { label: 'Home', path: '/' },
+  { label: 'Service Areas', path: '/service-areas' },
+]);
+---
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <InnerPageHero
+    headline="Service Areas — Vacaville + 20 Miles"
+    subheadline="All of Solano County and most of southern Napa County. Mobile service to your door, no trip fees."
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Service Areas' },
+    ]}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py bg-bg">
+    <div class="container-site max-w-3xl">
+      <p class="font-body text-lg text-text leading-loose">
+        We come to you anywhere within 20 miles of Vacaville — that's all of Solano County and most of southern Napa County. No trip fees. No "we don't service that zip code." If you're in the list below, we're there — often same day.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-20 bg-bg">
+    <div class="container-site">
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+        {CITIES.map((city) => (
+          <li>
+            <a
+              href={`/service-areas/${city.slug}`}
+              class="service-card block bg-surface border border-border rounded-lg p-6 h-full"
+            >
+              <h3 class="font-display font-bold text-2xl text-text mb-2">{city.name}, CA</h3>
+              <p class="text-sm text-text-muted leading-normal mb-4">{city.landmark}</p>
+              <span class="inline-flex items-center gap-1 text-primary font-semibold text-sm">
+                Auto Glass in {city.name} <span class="learn-more-arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-12 bg-surface border border-border rounded-lg p-6 md:p-8">
+        <p class="eyebrow mb-3">Full Coverage List</p>
+        <h2 class="font-display font-bold text-2xl text-text mb-4">Every city we cover</h2>
+        <ul class="flex flex-wrap gap-2 list-none p-0">
+          {SITE.allCities.map((city) => (
+            <li class="inline-flex px-3 py-1.5 bg-bg border border-border rounded-full text-sm font-body font-semibold text-text">
+              {city}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-5 text-sm text-text-muted italic">
+          Not on the list? Call us — if it's within range, we'll come. If it's out of range, we'll recommend a trusted partner shop.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

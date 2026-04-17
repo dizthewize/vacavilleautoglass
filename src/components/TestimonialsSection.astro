@@ -1,0 +1,51 @@
+---
+export interface Testimonial {
+  quote: string;
+  name: string;
+  city: string;
+  service: string;
+}
+
+export interface Props {
+  testimonials: Testimonial[];
+  eyebrow?: string;
+  heading?: string;
+}
+
+const {
+  testimonials,
+  eyebrow = 'What Customers Say',
+  heading = 'Trusted by Vacaville Drivers',
+} = Astro.props;
+---
+<section class="section-py bg-bg">
+  <div class="container-site">
+    <div class="max-w-2xl mb-10 md:mb-12">
+      <p class="eyebrow mb-3">{eyebrow}</p>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight">
+        {heading}
+      </h2>
+    </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+      {testimonials.map((t) => (
+        <li class="bg-surface rounded-lg p-8 flex flex-col h-full">
+          <div class="flex gap-1 mb-4" aria-label="5 out of 5 stars">
+            {[0, 1, 2, 3, 4].map(() => (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-accent" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            ))}
+          </div>
+          <blockquote class="text-lg italic text-text font-body leading-normal flex-1">
+            "{t.quote}"
+          </blockquote>
+          <div class="mt-5 pt-5 border-t border-border">
+            <p class="font-body font-bold text-base text-text">{t.name}</p>
+            <p class="text-sm text-text-muted">{t.city} · {t.service}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

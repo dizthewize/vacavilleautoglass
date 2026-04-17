@@ -1,0 +1,153 @@
+---
+// Site header with sticky nav, phone link, and mobile overlay
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath === path || (path !== '/' && currentPath.startsWith(path));
+---
+<header
+  class="sticky top-0 z-50 bg-bg/95 backdrop-blur border-b border-transparent transition-colors"
+  style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
+>
+  <div class="container-site flex items-center justify-between h-[76px]">
+    <a href="/" class="flex items-center gap-2" aria-label="Vacaville Auto Glass — Home">
+      <span class="font-display font-black text-lg uppercase tracking-tight leading-none">
+        <span class="block text-primary">VACAVILLE</span>
+        <span class="block text-primary relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-12 after:h-[2px] after:bg-accent">
+          AUTO GLASS
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+      <div class="relative group">
+        <a
+          href="/services"
+          class={`font-body font-semibold text-base text-text hover:text-primary transition-colors ${isActive('/services') ? 'text-primary' : ''}`}
+        >
+          Services
+        </a>
+        <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block">
+          <div class="bg-bg shadow-lg rounded-lg border border-border p-2 min-w-[240px]">
+            <a href="/services/windshield-replacement" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Windshield Replacement</a>
+            <a href="/services/windshield-repair" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Windshield Repair</a>
+            <a href="/services/side-window-replacement" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Side Window Replacement</a>
+            <a href="/services/rear-window-replacement" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Rear Window Replacement</a>
+            <a href="/services/adas-calibration" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">ADAS Calibration</a>
+            <a href="/services/mobile-service" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Mobile Service</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <a
+          href="/service-areas"
+          class={`font-body font-semibold text-base text-text hover:text-primary transition-colors ${isActive('/service-areas') ? 'text-primary' : ''}`}
+        >
+          Service Areas
+        </a>
+        <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block">
+          <div class="bg-bg shadow-lg rounded-lg border border-border p-2 min-w-[200px]">
+            <a href="/service-areas/vacaville" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Vacaville</a>
+            <a href="/service-areas/fairfield" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Fairfield</a>
+            <a href="/service-areas/dixon" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Dixon</a>
+            <a href="/service-areas/davis" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Davis</a>
+            <a href="/service-areas/vallejo" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Vallejo</a>
+            <a href="/service-areas/napa" class="block px-3 py-2 rounded hover:bg-surface text-sm font-medium">Napa</a>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="/insurance"
+        class={`font-body font-semibold text-base text-text hover:text-primary transition-colors ${isActive('/insurance') ? 'text-primary' : ''}`}
+      >
+        Insurance
+      </a>
+      <a
+        href="/about"
+        class={`font-body font-semibold text-base text-text hover:text-primary transition-colors ${isActive('/about') ? 'text-primary' : ''}`}
+      >
+        About
+      </a>
+      <a
+        href="/contact"
+        class={`font-body font-semibold text-base text-text hover:text-primary transition-colors ${isActive('/contact') ? 'text-primary' : ''}`}
+      >
+        Contact
+      </a>
+    </nav>
+
+    <div class="hidden md:flex items-center gap-4">
+      <a
+        href="tel:+19166122126"
+        class="flex items-center gap-2 font-body font-semibold text-sm text-text hover:text-primary"
+        aria-label="Call Vacaville Auto Glass"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        (916) 612-2126
+      </a>
+      <a
+        href="#lead-form"
+        class="btn-primary inline-flex items-center justify-center bg-accent text-text-inverse font-display font-bold text-sm uppercase tracking-wide rounded-md px-4 py-2.5"
+      >
+        Free Quote
+      </a>
+    </div>
+
+    <details class="md:hidden relative">
+      <summary
+        class="list-none cursor-pointer p-2 -mr-2"
+        aria-label="Open menu"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </summary>
+      <div class="fixed inset-0 top-[76px] bg-bg z-40 overflow-y-auto">
+        <nav class="container-site py-6 flex flex-col gap-1" aria-label="Mobile">
+          <a href="/services" class="block py-4 font-display font-extrabold text-xl text-text border-b border-border">Services</a>
+          <a href="/services/windshield-replacement" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Windshield Replacement</a>
+          <a href="/services/windshield-repair" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Windshield Repair</a>
+          <a href="/services/side-window-replacement" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Side Window Replacement</a>
+          <a href="/services/rear-window-replacement" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Rear Window Replacement</a>
+          <a href="/services/adas-calibration" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">ADAS Calibration</a>
+          <a href="/services/mobile-service" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted mb-2">Mobile Service</a>
+
+          <a href="/service-areas" class="block py-4 font-display font-extrabold text-xl text-text border-b border-border border-t">Service Areas</a>
+          <a href="/service-areas/vacaville" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Vacaville</a>
+          <a href="/service-areas/fairfield" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Fairfield</a>
+          <a href="/service-areas/dixon" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Dixon</a>
+          <a href="/service-areas/davis" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Davis</a>
+          <a href="/service-areas/vallejo" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted">Vallejo</a>
+          <a href="/service-areas/napa" class="block py-2 pl-4 font-body font-semibold text-base text-text-muted mb-2">Napa</a>
+
+          <a href="/insurance" class="block py-4 font-display font-extrabold text-xl text-text border-b border-border border-t">Insurance</a>
+          <a href="/about" class="block py-4 font-display font-extrabold text-xl text-text border-b border-border">About</a>
+          <a href="/contact" class="block py-4 font-display font-extrabold text-xl text-text border-b border-border">Contact</a>
+
+          <div class="mt-6 flex flex-col gap-3">
+            <a
+              href="tel:+19166122126"
+              class="w-full inline-flex items-center justify-center gap-2 bg-primary text-text-inverse font-display font-bold text-base uppercase tracking-wide rounded-md py-4"
+              aria-label="Call Vacaville Auto Glass"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Call (916) 612-2126
+            </a>
+            <a
+              href="#lead-form"
+              class="btn-primary w-full inline-flex items-center justify-center bg-accent text-text-inverse font-display font-black text-base uppercase tracking-wide rounded-md py-4"
+            >
+              Get a Free Quote
+            </a>
+          </div>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
