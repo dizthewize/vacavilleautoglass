@@ -7,17 +7,20 @@
     "discovery": "complete",
     "planner": "complete",
     "designer": "complete",
-    "builder": "pending",
+    "builder": "complete",
     "reviewer": "pending",
     "deploy": "skipped"
   },
   "deploy_enabled": false,
   "live_url": null,
-  "last_update": null,
+  "last_update": "2026-04-16",
   "design_proof": {
     "status": "approved",
     "revision_count": 1,
     "last_verdict": "PROCEED",
     "proof_path": ".web-studio/design-proof.html"
-  }
+  },
+  "framework": "astro",
+  "pagesBuilt": 18,
+  "lastCompletedPhase": "b7"
 }
