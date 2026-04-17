@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "https://www.vacavilleautoglass.com/*"
+  to = "https://vacavilleautoglass.com/:splat"
+  status = 301
+  force = true
