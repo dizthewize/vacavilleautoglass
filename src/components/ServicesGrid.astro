@@ -1,0 +1,68 @@
+---
+export interface Service {
+  slug: string;
+  name: string;
+  benefit: string;
+  icon?: string;
+}
+
+export interface Props {
+  services: Service[];
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  sectionBg?: 'bg' | 'surface';
+}
+
+const {
+  services,
+  eyebrow = 'What We Do',
+  heading = 'Auto Glass Services',
+  intro,
+  sectionBg = 'bg',
+} = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  'windshield-replacement': 'M3 7l9-4 9 4v10l-9 4-9-4V7z M3 7l9 4 9-4 M12 11v10',
+  'windshield-repair': 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83',
+  'side-window-replacement': 'M3 5h18v14H3z M3 12h18',
+  'rear-window-replacement': 'M4 8h16l-2 8H6z M4 8l1-3h14l1 3 M7 20h10',
+  'adas-calibration': 'M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z',
+  'mobile-service': 'M3 7h12v8H3z M15 10h4l2 3v2h-6 M6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+};
+---
+<section class={`section-py ${sectionBg === 'surface' ? 'bg-surface' : 'bg-bg'}`}>
+  <div class="container-site">
+    <div class="max-w-3xl mb-10 md:mb-12">
+      <p class="eyebrow mb-3">{eyebrow}</p>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight mb-3">
+        {heading}
+      </h2>
+      {intro && (
+        <p class="text-lg text-text-muted leading-normal max-w-2xl">{intro}</p>
+      )}
+    </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+      {services.map((svc) => (
+        <li>
+          <a
+            href={`/services/${svc.slug}`}
+            class="service-card block bg-surface border border-border rounded-lg p-6 h-full"
+          >
+            <div class="w-10 h-10 mb-4 text-primary">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d={iconPaths[svc.slug] || iconPaths['windshield-replacement']} />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-text leading-snug mb-2">{svc.name}</h3>
+            <p class="text-base text-text-muted font-medium leading-normal mb-4">{svc.benefit}</p>
+            <span class="inline-flex items-center gap-1 text-primary font-semibold text-sm">
+              Learn More <span class="learn-more-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

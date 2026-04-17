@@ -1,0 +1,103 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="bg-surface-dark text-text-inverse">
+  <div class="container-site py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <div class="font-display font-black text-lg uppercase leading-none mb-4">
+          <span class="block">VACAVILLE</span>
+          <span class="block relative pb-1 after:absolute after:left-0 after:bottom-0 after:w-12 after:h-[2px] after:bg-accent">AUTO GLASS</span>
+        </div>
+        <p class="font-body text-sm text-white/75 mb-4 leading-normal">
+          Mobile Auto Glass<br/>Vacaville + 20 Miles
+        </p>
+        <a
+          href="tel:+19166122126"
+          class="block font-display font-extrabold text-2xl text-text-inverse hover:text-accent transition-colors mb-2"
+          aria-label="Call Vacaville Auto Glass"
+        >
+          (916) 612-2126
+        </a>
+        <p class="font-body text-sm text-white/70">
+          Mon–Sat 8am–6pm<br/>
+          Sun by appointment
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display font-bold text-sm uppercase tracking-wide text-white/90 mb-4">Services</h3>
+        <ul class="space-y-2 font-body text-sm text-white/75">
+          <li><a href="/services/windshield-replacement" class="hover:text-accent">Windshield Replacement</a></li>
+          <li><a href="/services/windshield-repair" class="hover:text-accent">Windshield Repair</a></li>
+          <li><a href="/services/side-window-replacement" class="hover:text-accent">Side Window Replacement</a></li>
+          <li><a href="/services/rear-window-replacement" class="hover:text-accent">Rear Window Replacement</a></li>
+          <li><a href="/services/adas-calibration" class="hover:text-accent">ADAS Calibration</a></li>
+          <li><a href="/services/mobile-service" class="hover:text-accent">Mobile Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display font-bold text-sm uppercase tracking-wide text-white/90 mb-4">Service Areas</h3>
+        <ul class="space-y-2 font-body text-sm text-white/75">
+          <li><a href="/service-areas/vacaville" class="hover:text-accent">Vacaville</a></li>
+          <li><a href="/service-areas/fairfield" class="hover:text-accent">Fairfield</a></li>
+          <li><a href="/service-areas/dixon" class="hover:text-accent">Dixon</a></li>
+          <li><a href="/service-areas/davis" class="hover:text-accent">Davis</a></li>
+          <li><a href="/service-areas/vallejo" class="hover:text-accent">Vallejo</a></li>
+          <li><a href="/service-areas/napa" class="hover:text-accent">Napa</a></li>
+          <li class="pt-1"><a href="/service-areas" class="font-semibold text-accent hover:text-white">See all areas →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display font-bold text-sm uppercase tracking-wide text-white/90 mb-4">Trust</h3>
+        <ul class="space-y-3 font-body text-sm text-white/85">
+          <li class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Licensed &amp; Insured
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            ADAS Certified
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            All Insurance Accepted
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Lifetime Warranty
+          </li>
+        </ul>
+        <div class="mt-5">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center bg-accent text-text-inverse font-display font-bold text-sm uppercase tracking-wide rounded-md px-4 py-2.5"
+          >
+            Get a Free Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-primary-dark">
+    <div class="container-site py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/70 font-body">
+      <p>&copy; {year} Vacaville Auto Glass. Locally owned and operated.</p>
+      <p class="flex items-center gap-4">
+        <a href="tel:+19166122126" class="hover:text-accent" aria-label="Call Vacaville Auto Glass">(916) 612-2126</a>
+        <span aria-hidden="true">·</span>
+        <a href="/contact" class="hover:text-accent">Contact</a>
+      </p>
+    </div>
+  </div>
+</footer>

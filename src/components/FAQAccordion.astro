@@ -1,0 +1,55 @@
+---
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  faqs: FAQ[];
+  eyebrow?: string;
+  heading?: string;
+}
+
+const {
+  faqs,
+  eyebrow = 'Common Questions',
+  heading = 'Frequently Asked Questions',
+} = Astro.props;
+---
+<section class="section-py bg-surface">
+  <div class="container-site">
+    <div class="max-w-2xl mb-8 md:mb-10">
+      <p class="eyebrow mb-3">{eyebrow}</p>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl text-text leading-tight">
+        {heading}
+      </h2>
+    </div>
+
+    <div class="max-w-3xl divide-y divide-border border-y border-border">
+      {faqs.map((faq) => (
+        <details class="group py-0">
+          <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer list-none font-body font-semibold text-lg text-text">
+            <span>{faq.question}</span>
+            <svg
+              class="chevron shrink-0 text-primary"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="pb-5 pr-8 text-base text-text-muted leading-loose">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

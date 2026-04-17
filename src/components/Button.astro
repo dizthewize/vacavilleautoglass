@@ -1,0 +1,53 @@
+---
+export interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'primary',
+  size = 'md',
+  fullWidth = false,
+  class: classProp = '',
+  ariaLabel,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'text-sm px-4 py-2',
+  md: 'text-base px-6 py-3',
+  lg: 'text-lg px-8 py-4',
+};
+
+const variantClasses = {
+  primary:
+    'btn-primary bg-accent text-text-inverse font-display font-bold tracking-wide uppercase rounded-md',
+  secondary:
+    'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-text-inverse font-display font-semibold tracking-wide uppercase rounded-md transition-colors duration-fast',
+  ghost:
+    'text-primary hover:text-accent font-body font-semibold border-b-2 border-primary hover:border-transparent rounded-none transition-colors duration-fast',
+};
+
+const commonClass = [
+  'inline-flex items-center justify-center',
+  sizeClasses[size],
+  variantClasses[variant],
+  fullWidth ? 'w-full' : '',
+  classProp,
+].filter(Boolean).join(' ');
+---
+{href ? (
+  <a href={href} class={commonClass} aria-label={ariaLabel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={commonClass} aria-label={ariaLabel}>
+    <slot />
+  </button>
+)}
